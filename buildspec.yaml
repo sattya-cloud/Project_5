@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo "Installing AWS CLI and preparing environment..."
+  build:
+    commands:
+      - echo "Deploying CloudFormation stack..."
+      - aws cloudformation deploy \
+          --template-file template.yaml \
+          --stack-name My2TierArchitecture \
+          --capabilities CAPABILITY_NAMED_IAM
+      - echo "Deployment completed."
+artifacts:
+  files:
+    - template.yaml
